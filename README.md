@@ -9,8 +9,13 @@
 - webdrivermanager (安装command： pip install webdrivermanager)
 
 安装完后，需要在webapp.py的目录下面打开terminal并且执行下列命令：
-- FLASK_APP=webapp.py
+- FLASK_APP=Webapp.py (此处注意文件名大小写)
 - python -m flask run (注：如果Python版本为python 3,命令则需要改为‘python3 -m flask run')
+
+或者
+
+- export FLASK_APP=Webapp.py
+- flask run
 
 server运行起来之后，terminal将会显示以下信息：
 
