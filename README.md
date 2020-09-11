@@ -10,7 +10,7 @@
 
 安装完后，需要在webapp.py的目录下面打开terminal并且执行下列命令：
 - set FLASK_APP=webapp.py
-- python -m flask run
+- python -m flask run (注：如果Python版本为python 3,命令则需要改为‘python3 -m flask run')
 
 server运行起来之后，terminal将会显示以下信息：
 
