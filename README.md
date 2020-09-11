@@ -29,3 +29,6 @@ Use a production WSGI server instead.
 这个时候可以尝试访问测试链接来检查是否json数据显示正常
 - 打开浏览器并输入 'http://127.0.0.1:5000/search/FPS2219006CA'
 一切正常则会看到物流json数据
+
+**当server运行起来的时候，后台可以通过以下的path来获取json数据
+localhost:5000/search/Consumer_number
