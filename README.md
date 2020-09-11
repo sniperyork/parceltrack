@@ -1,6 +1,6 @@
 # 使用须知
 
-该软件通过flask建立起一个server来接收get数据请求相应。
+该软件通过flask建立起一个server来接收get数据请求并响应。
 请在使用前，在服务器安装最新Python版本，以及以下几个python modules：
 - flask (安装command： pip install Flask)
 - requests (安装command： pip install requests)
