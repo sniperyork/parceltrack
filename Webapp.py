@@ -11,6 +11,7 @@ app = Flask(__name__)
 def get_events(Consumer_number,charset='utf-8'):
     FPjsonList = []
     SCjsonList = []
+    SFjsonList = []
     Events_FP = []
     Timestamps_FP = []
 
@@ -36,7 +37,31 @@ def get_events(Consumer_number,charset='utf-8'):
             FPjsonList.append({"Event" : Events_FP[ok],"Timestamp" : Timestamps_FP[ok]})
         FPjsonList = json.dumps(FPjsonList,ensure_ascii=False).encode('utf-8')
         return FPjsonList
-        
+
+    elif Consumer_number[:2] =='SF':
+        options = webdriver.ChromeOptions()
+        options.headless = True
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver.get('https://air-gtc.com/WaybillLot.aspx')
+        text_box = driver.find_element_by_xpath('/html/body/form/div[3]/div[2]/textarea')
+        search_button = driver.find_element_by_xpath('/html/body/form/div[3]/div[2]/input')
+
+        text_box.send_keys(Consumer_number)
+        search_button.click()
+        Events_Result = driver.find_elements_by_class_name('txt')
+        Timestamp = driver.find_elements_by_class_name('time')
+        Events_Series = []
+        Timestamp_Series = []
+        for i in Events_Result:
+            Events_Series.append(i.text)
+        for j in Timestamp:
+            Timestamp_Series.append(j.text)
+        for i in range(0,len(Events_Series)):
+            SFjsonList.append({"Event" : Events_Series[i], "Timestamp" : Timestamp_Series[i]})
+        SFjsonList = json.dumps(SFjsonList,ensure_ascii=False).encode('utf-8')
+        driver.close()
+        return SFjsonList 
+
     else: #This marks the start of the scrape for Shipexs
         options = webdriver.ChromeOptions()
         options.headless = True
